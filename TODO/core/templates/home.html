@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Todo List</h1>
+
+      <form id="task-form" method="POST">
+        {% csrf_token %}
+        <input
+          type="text"
+          id="task-input"
+          class="task-input"
+          placeholder="Add a new task..."
+          name="task"
+        />
+
+        <input type="date" name="date" min="2019-01-01" max="2070-12-31" />
+        <a href="{% url 'home' %}">
+          <input type="submit" value="Add" class="add-btn" />
+        </a>
+      </form>
+      <br />
+      <a href="{% url 'date' %}" class="add-btn">Search</a>
+      <br />
+      <br />
+
+      {% for tasks in tasks %}
+      <ul id="task-list">
+        <!-- List of tasks will be added dynamically -->
+        <li>
+          <input type="checkbox" />
+          {{tasks}}
+
+          <a href="{% url 'edit' tasks.id %}">
+            <span class="material-symbols-outlined"> edit </span>
+          </a>
+
+          <a href="{% url 'delete' tasks.id %}">
+            <button class="delete-btn">X</button>
+          </a>
+        </li>
+      </ul>
+      {% endfor %}
+
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <!-- <script src="{% static 'script.js' %}"></script> -->
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{% if act == 'edit' %}
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {{form.task}}
+    
+    <input type="submit" name="" value="Done" id="">
+</form>
+{% endif %}

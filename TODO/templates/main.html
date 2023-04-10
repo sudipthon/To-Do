@@ -1,0 +1,41 @@
+{% if page == 'register'  %}
+<div>
+  <form method="POST" action="">
+    {% csrf_token %} {% for field in form %}
+    <p>{{field.label}}:
+    {{field}}</p>
+    {% endfor %}
+    <input type="submit" value="Register" id="" />
+    <p>Already a User?</p>
+    <p>
+      <a href="{% url 'login' %}"> Login </a>
+    </p>
+  </form>
+</div>
+{% else %}
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p> <label for="username">Username</label>
+            <input type="text" name="username" placeholder="username" id="username"></p>
+
+        <p>
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="password" id="password">
+            <p>
+
+                
+                <input type="submit" value="Login" name="" id="">
+            </p>
+        </p>
+        
+    </form>  
+    <p>Not a User?</p>
+    <p>
+      <a href="{% url 'register' %}"> Register </a>
+    </p>
+</div>
+{% endif %}
+
+
+

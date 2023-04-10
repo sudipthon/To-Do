@@ -1,0 +1,34 @@
+
+    
+    <form id="my_form" action="{% url 'date' %}" method="POST">
+    {% csrf_token %}
+    <label for="date">Date:</label>
+    <input type="date" name="date" min="2019-01-01" max="2070-12-31">
+<input type="submit" value="Ok">
+</form>
+{% for tasks in tasks %}
+
+<p>{{tasks}}  {{tasks.created}} @@{{tasks.user}}
+    
+    
+<a href="{% url 'edit' tasks.id %}">Edit</a> 
+
+
+
+<a href="{% url 'delete' tasks.id %}">Delete</a></p>
+{% endfor %}
+<p>
+    <a href="{% url 'add' %}">Add</a>
+</p>
+{% if act == 'add' %}
+<form action="" method="POST">
+{% csrf_token %}
+<label for="">Task:</label>
+<input type="text" name="task" id="">   
+<input type="submit"  value= 'Add' name="">
+</form>
+
+{% endif %}
+<p>
+    <a href="{% url 'logout' %}">Logout</a>
+</p>
